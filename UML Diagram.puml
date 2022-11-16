@@ -1,0 +1,72 @@
+@startuml
+
+class ParkingLot
+{
+morningTime: int
+eveningTime
+maxVanSpots:int
+maxCompactSpots:int
+maxSuvSpots:int
+__suvParkingSpots__:dict
+__compactParkingSpots__ :dict
+__vanParkingSpots__ :dict
+curfews: dict
+parkingLot: dict
+Park(car:ABCcar)
+leave(ownerName:str)
+__parkCar__(car:ABCcar)
+calculateCost(car:ABCcar)
+}
+
+class User
+{
+userName: str
+passWord: str
+parkingLot: ParkingLot
+__cars__:dict
+cars: dict
+createCar(carName:str, type:int)
+__getCar__(self, carName:str)
+parkCar(carName:str)
+reserveSpot(carName:str)
+
+}
+
+
+
+class ABCcar
+{
+owner: User
+name: str
+timeOfPark: _Time
+getParkTime()
+}
+
+ParkingLot o-- ABCcar
+ParkingLot o-- User
+
+ABCcar ^-- Compact
+ABCcar ^-- Van
+ABCcar ^-- Suv
+
+Class Compact
+{
+name: str
+timeOfPark: _Time
+getParkTime()
+}
+Class Van
+{
+name: str
+timeOfPark: _Time
+getParkTime()
+}
+Class Suv
+{
+name: str
+timeOfPark: _Time
+getParkTime()
+}
+
+
+@enduml
